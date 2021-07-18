@@ -8,7 +8,7 @@ Setup_P1    bic.b    #010h, &P1DIR                          ; set P1.4 as input 
 	    bic.b    #010h, &P1IFG                          ; clear the flag bit
 
 Mainloop    bis.w    #CPUOFF+GIE,SR                         ; CPU OFF, enable interrupts -> Cpu sleep
-            Nop                                     ;Required only for debugger, no operation
+            Nop                                      	    ;Required only for debugger, no operation
 
 ;---------------------------------------------------------------------------------------------------------------------------------------------------
 ;the ISR
