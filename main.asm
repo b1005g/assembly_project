@@ -3,9 +3,11 @@
 
 RESET:      mov.w #__STACK_END,SP ; Stack pointer
 StopWDT:    bic.b #001h,&P2DIR                              ;set P2.0 as input
-	        bis.b #001h,&P1DIR                              ;set P1.0 as output
+	    bis.b #001h,&P1DIR                              ;set P1.0 as output
             bis.b #040h,&P1DIR                              ;set P1.6 as output
-
+;-------------------------------------------------------------------------------------------------
+Main loop here
+;-------------------------------------------------------------------------------------------------
 Main_LOOP   bit.b #001h,&P2IN
             inc.b &P2IN
             jz Blink_RED
@@ -21,8 +23,11 @@ Delay:
             jnz loop
             ret
 
-        .global_STACK_END
-        .sect  .stack
-
-        .sect  ".reset"
-        .short RESET
+       	   .global_STACK_END
+           .sect  .stack
+	   
+;-----------------------------------------------------------------------------------------------------
+;Interrupt Vectors
+;-----------------------------------------------------------------------------------------------------
+           .sect  ".reset"
+           .short RESET
